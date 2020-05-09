@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/gender_card.dart';
 import 'package:bmi_calculator/reusable_card.dart';
-
-const bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const bottomContainerColor = Color(0xFFEB1555);
-const _textFontSize = 18.0;
+import 'package:bmi_calculator/bmi_constants.dart';
 
 double _height = 192; // the initial height
 double _weight = 125;
@@ -64,8 +59,8 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     onTapFunction: () => setState(() => _selectedGender = Gender.female),
                     color: _selectedGender == Gender.female
-                      ? activeCardColor
-                      : inactiveCardColor,
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
                     cardChild: GenderCard(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE'
@@ -76,8 +71,8 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard( 
                     onTapFunction: () => setState( () => _selectedGender = Gender.male),
                     color: _selectedGender == Gender.male
-                      ? activeCardColor
-                      : inactiveCardColor,
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
                     cardChild: GenderCard(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE'
@@ -92,14 +87,14 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       children: <Widget>[
                         Text(
                           'HEIGHT',
                           style: TextStyle(
-                            fontSize: _textFontSize,
-                            color: textFontColor,
+                            fontSize: kTextFontSize,
+                            color: kTextFontColor,
                           )
                         ),
                         Slider(
@@ -125,14 +120,14 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       children: <Widget>[
                         Text(
                           'WEIGHT',
                           style: TextStyle(
-                            fontSize: _textFontSize,
-                            color: textFontColor,
+                            fontSize: kTextFontSize,
+                            color: kTextFontColor,
                           ),
                         ),
                         Text(
@@ -150,14 +145,14 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       children: <Widget>[
                         Text(
                           'AGE',
                           style: TextStyle(
-                            fontSize: _textFontSize,
-                            color: textFontColor,
+                            fontSize: kTextFontSize,
+                            color: kTextFontColor,
                           )
                         ),
                         Text(
@@ -183,10 +178,10 @@ class _InputPageState extends State<InputPage> {
                 style: TextStyle(),
               ),
             ),
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       )
