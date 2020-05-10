@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/gender_card.dart';
 import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/card_button.dart';
 import 'package:bmi_calculator/bmi_constants.dart';
 
 int _height = 192; // the initial height
@@ -148,13 +149,19 @@ class _InputPageState extends State<InputPage> {
                           ),
                         ),
                         Text(
-                          '$_weight',
+                          _weight.toString(),
                           style: kBigText,
                         ),
                         Row(
                           children: <Widget>[
-                            CardButton(FontAwesomeIcons.minus),
-                            CardButton(FontAwesomeIcons.plus),
+                            CardButton(
+                              FontAwesomeIcons.minus,
+                              ()=> setState( () => _weight-- )
+                            ),
+                            CardButton(
+                              FontAwesomeIcons.plus,
+                              ()=> setState( () => _weight++)
+                              ),
                           ],
                         )
                       ],
@@ -177,8 +184,14 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Row(
                           children: <Widget>[
-                            CardButton(FontAwesomeIcons.minus),
-                            CardButton(FontAwesomeIcons.plus),
+                            CardButton(
+                              FontAwesomeIcons.minus,
+                              ()=> setState( () => _age--)
+                            ),
+                            CardButton(
+                              FontAwesomeIcons.plus,
+                              ()=> setState( () => _age++)
+                            ),
                           ],
                         ),
                       ],
@@ -202,43 +215,6 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       )
-    );
-  }
-}
-
-class CardButton extends StatelessWidget{
-
-  CardButton(
-    this.icon,
-    // this.param,
-  );
-
-  final IconData icon;
-  // double param;
-
-  @override
-  Widget build(BuildContext context){
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          // borderRadius: BorderRadius.circular(13),
-          color: Colors.grey,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black,
-              offset: Offset(0,3),
-            ),
-          ]
-        ),
-        child: FlatButton(
-          child: Icon(
-            this.icon,
-            color: Colors.white,
-          ),
-          onPressed: null,
-        ),
-      ),
     );
   }
 }
