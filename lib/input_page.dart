@@ -4,9 +4,9 @@ import 'package:bmi_calculator/gender_card.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/bmi_constants.dart';
 
-double _height = 192; // the initial height
-double _weight = 125;
-double _age = 25;
+int _height = 192; // the initial height
+int _weight = 125;
+int _age = 25;
 
 enum Gender{male, female}
 
@@ -89,6 +89,7 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     color: kActiveCardColor,
                     cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'HEIGHT',
@@ -97,17 +98,32 @@ class _InputPageState extends State<InputPage> {
                             color: kTextFontColor,
                           )
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: <Widget>[
+                            Text(
+                              _height.toString(),
+                              style: kBigText,
+                            ),
+                            Text(
+                              'cm',
+                              style: kBodyText,
+                            )
+                          ],
+                        ),
                         Slider(
                           onChanged: (double newValue) {
-                            setState( () => _height = newValue);
+                            setState( () => _height = newValue.toInt());
                           },
                           label: '$_height',
                           value: _height.toDouble(),
-                          min: 20,
-                          max: 200,
-                          
+                          min: 120,
+                          max: 220,
+                          activeColor: Color(0xFFEB1555),
+                          inactiveColor: Color(0xFF8D8E98),
                         ),
-                        
                       ],
                     ),
                   ),
@@ -122,6 +138,7 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     color: kActiveCardColor,
                     cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'WEIGHT',
@@ -132,6 +149,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Text(
                           '$_weight',
+                          style: kBigText,
                         ),
                         Row(
                           children: <Widget>[
@@ -147,16 +165,15 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     color: kActiveCardColor,
                     cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'AGE',
-                          style: TextStyle(
-                            fontSize: kTextFontSize,
-                            color: kTextFontColor,
-                          )
+                          style: kBodyText
                         ),
                         Text(
                           '$_age',
+                          style: kBigText,
                         ),
                         Row(
                           children: <Widget>[
