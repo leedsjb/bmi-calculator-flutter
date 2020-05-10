@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/results_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,4 +19,9 @@ const kBodyText = TextStyle(
 const kBigText = TextStyle (
   fontSize: 50,
   fontWeight: FontWeight.w900,
+);
+
+const kLargeButtonTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold
 );
