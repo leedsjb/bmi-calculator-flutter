@@ -34,17 +34,19 @@ class ResultsPage extends StatelessWidget{
         children: <Widget>[
           Expanded(
             flex: 1,
-            // child: Container(
+            child: Container(
+              padding: EdgeInsets.all(15),
+              alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Results',
                 style: kH1,
               ),
-            // ),
+            ),
           ),
           Expanded(
             flex: 6,
             child: ReusableCard(
-              color: kInactiveCardColor,
+              color: kActiveCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,6 +61,7 @@ class ResultsPage extends StatelessWidget{
                   ),
                   Text(
                     resultMessageHigh,
+                    textAlign: TextAlign.center,
                     style: kBodyText,
                   )
                 ],
