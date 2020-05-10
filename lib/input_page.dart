@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/bottom_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/gender_card.dart';
 import 'package:bmi_calculator/reusable_card.dart';
@@ -8,6 +9,7 @@ import 'package:bmi_calculator/bmi_constants.dart';
 int _height = 192; // the initial height
 int _weight = 125;
 int _age = 25;
+int _bmi;
 
 enum Gender{male, female}
 
@@ -110,7 +112,7 @@ class _InputPageState extends State<InputPage> {
                             ),
                             Text(
                               'cm',
-                              style: kBodyText,
+                              style: kBodyText
                             )
                           ],
                         ),
@@ -143,10 +145,7 @@ class _InputPageState extends State<InputPage> {
                       children: <Widget>[
                         Text(
                           'WEIGHT',
-                          style: TextStyle(
-                            fontSize: kTextFontSize,
-                            color: kTextFontColor,
-                          ),
+                          style: kSubtitleText,
                         ),
                         Text(
                           _weight.toString(),
@@ -176,7 +175,7 @@ class _InputPageState extends State<InputPage> {
                       children: <Widget>[
                         Text(
                           'AGE',
-                          style: kBodyText
+                          style: kSubtitleText,
                         ),
                         Text(
                           '$_age',
@@ -201,23 +200,27 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/results'),
-            child: Container(
-              child: Center(
-                child: Text(
-                  'CALCULATE',
-                  style: kLargeButtonTextStyle,
-                ),
-              ),
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
+          BottomButton(
+            buttonText: 'CALCULATE',
+            onTap:  () {
+              _bmi = calculateBMI();
+              print(_bmi.toString());
+              Navigator.pushNamed(
+                context,
+                '/results',
+                arguments: _bmi,
+              );
+            },
           ),
         ],
       )
     );
   }
+}
+
+int calculateBMI(){
+
+  int _calculatedBMI = _weight ~/ ((_height*_height)/(100*100));
+  print('the calculated BMI is: $_calculatedBMI');
+  return _calculatedBMI;
 }
